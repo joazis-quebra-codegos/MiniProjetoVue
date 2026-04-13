@@ -3,5 +3,5 @@ export default interface Funcionario{
     nome: String;
     email: String;
     cargo: String;
-    salario: number
+    salario: number;
 }

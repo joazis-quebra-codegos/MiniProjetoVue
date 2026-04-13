@@ -1,47 +1,54 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { computed, ref, VueElement } from 'vue'
+import type Funcionario from './model/Funcionario';
 const cargo = ref('')
+const funcionario = ref({} as Funcionario)
+const funcionarios = ref([
+  {
+    id: 1,
+    nome: "João",
+    email: "joao@email",
+    cargo: "estudante",
+    salario: 0
+  }
+]as Funcionario[])
 
 </script>
 
 <template>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-  <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
 
   <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
-    <label class="form-label">Nome</label>
- <input class="form-control" type="text" placeholder="Nome" aria-label="Nome">
+  <label class="form-label">Nome</label>
+  <input class="form-control" type="text" placeholder="Nome" aria-label="Nome">
   <label class="form-label">Email</label>
- <input class="form-control" type="email" placeholder="Email" aria-label="Email">
-  <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
+  <input class="form-control" type="email" placeholder="Email" aria-label="Email">
   <label for="form-label">Cargo</label>
+  <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
   <label  class="form-label">Salario</label>
- <input class="form-control" type="email" placeholder="Salário" aria-label="salario">
+  <input class="form-control" type="email" placeholder="Salário" aria-label="salario">
   </div>
 
 
-  <table>
+  <table class="table" style="width: 50%;">
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Cargo</th>
-        <th>Salario</th>
-        <th>Ações</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cargo</th>
+        <th scope="col">Salario</th>
+        <th scope="col">Ações</th>
       </tr>
       <tbody>
-        <tr> </tr>
+        <tr v-for="funcionario in funcionarios" :key="funcionario.id"></tr>
       </tbody>
 
     </thead>
   </table>
-<<<<<<< HEAD
 
   <h1>{{  }}</h1>
-=======
->>>>>>> 7bf2c6e7c41a2fe3660c83876dff5cfc9db24543
 </template>
 
 <style scoped>
