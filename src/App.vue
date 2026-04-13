@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import { computed, ref, VueElement } from 'vue'
+const cargo = ref('')
+
+</script>
 
 <template>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -7,7 +12,9 @@
     Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
     documentation
   </p>
-<<<<<<< HEAD
+
+  <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
+
 
   <table>
     <thead>
@@ -19,14 +26,13 @@
         <th>Ações</th>
       </tr>
       <tbody>
-        <tr></tr>
+        <tr> </tr>
       </tbody>
 
     </thead>
   </table>
-=======
-  <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
->>>>>>> 902c5706c3cb132a3661331f7d79b0385db7fd39
+
+  <h1>{{  }}</h1>
 </template>
 
 <style scoped></style>
