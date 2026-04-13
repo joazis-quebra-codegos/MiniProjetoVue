@@ -32,11 +32,5 @@
 </template>
 
 <style scoped>
-  body{
-    display: flex;
-    justify-content: center;
-  }
-  .cadastro{
-    width: 50%;
-  }
+
 </style>
