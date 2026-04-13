@@ -42,7 +42,12 @@ const funcionarios = ref([
         <th scope="col">Ações</th>
       </tr>
       <tbody>
-        <tr v-for="funcionario in funcionarios" :key="funcionario.id"></tr>
+        <tr v-for="funcionario in funcionarios" :key="funcionario.id">
+          <td>{{ funcionario.nome }}</td>
+          <td>{{ funcionario.email }}</td>
+          <td>{{ funcionario.cargo }}</td>
+          <td>{{ funcionario.salario }}</td>
+        </tr>
       </tbody>
 
     </thead>
