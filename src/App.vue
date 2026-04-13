@@ -1,7 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { computed, ref, VueElement } from 'vue'
+import type Funcionario from './model/Funcionario';
 const cargo = ref('')
+const funcionario = ref({} as Funcionario)
+const funcionarios = ref([
+  {
+    id: 1,
+    nome: "João",
+    email: "joao@email",
+    cargo: "estudante",
+    salario: 0
+  }
+]as Funcionario[])
 
 </script>
 
@@ -24,14 +35,14 @@ const cargo = ref('')
   <table class="table">
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Cargo</th>
-        <th>Salario</th>
-        <th>Ações</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cargo</th>
+        <th scope="col">Salario</th>
+        <th scope="col">Ações</th>
       </tr>
       <tbody>
-        <tr> </tr>
+        <tr v-for="funcionario in funcionarios" :key="funcionario.id"></tr>
       </tbody>
 
     </thead>
