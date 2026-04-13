@@ -55,18 +55,18 @@ const funcionarios = ref([
 
 
   <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
-  <label class="form-label">Nome</label>
-  <input class="form-control" type="text" placeholder="Nome" aria-label="Nome">
-  <label class="form-label">Email</label>
-  <input class="form-control" type="email" placeholder="Email" aria-label="Email">
-  <label for="form-label">Cargo</label>
-  <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
-  <label  class="form-label">Salario</label>
-  <input class="form-control" type="email" placeholder="Salário" aria-label="salario">
+    <label class="form-label">Nome</label>
+    <input class="form-control" type="text" placeholder="Nome" aria-label="Nome">
+    <label class="form-label">Email</label>
+    <input class="form-control" type="email" placeholder="Email" aria-label="Email">
+    <label for="form-label">Cargo</label>
+    <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
+    <label  class="form-label">Salario</label>
+    <input class="form-control" type="email" placeholder="Salário" aria-label="salario">
   </div>
 
 
-  <table class="table" style="width: 50%;">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Nome</th>
@@ -81,15 +81,10 @@ const funcionarios = ref([
     </thead>
   </table>
 
-  <h1>{{  }}</h1>
+
+
 </template>
 
 <style scoped>
-  body{
-    display: flex;
-    justify-content: center;
-  }
-  .cadastro{
-    width: 50%;
-  }
+
 </style>
