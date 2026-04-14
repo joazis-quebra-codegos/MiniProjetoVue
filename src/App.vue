@@ -3,6 +3,42 @@ import { RouterLink, RouterView } from 'vue-router'
 import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
 const erro = ('')
+const editando = ref(false)
+const ordem = ref<'asc' | 'desc'>('asc')
+
+function ordenarPorNome(){
+  funcionarios.value.sort((a, b) => {
+    return ordem.value === 'asc'
+      ? a.nome.localeCompare(b.nome)
+      : b.nome.localeCompare(a.nome)
+  })
+
+  inverterOrdem()
+}
+
+function ordenarPorCargo(){
+  funcionarios.value.sort((a, b) => {
+    return ordem.value === 'asc'
+      ? a.cargo.localeCompare(b.cargo)
+      : b.cargo.localeCompare(a.cargo)
+  })
+
+  inverterOrdem()
+}
+
+function ordenarPorSalario(){
+  funcionarios.value.sort((a, b) => {
+    return ordem.value === 'asc'
+      ? a.salario - b.salario
+      : b.salario - a.salario
+  })
+
+  inverterOrdem()
+}
+
+function inverterOrdem(){
+  ordem.value = ordem.value === 'asc' ? 'desc' : 'asc'
+}
 
 function validar(){
   const erros: string[] = []
@@ -36,14 +72,34 @@ function enviar(){
   }
 }
 
-function salvarFuncionario(){
-  funcionarios.value.push({
-    ...funcionario.value,
-    id: Date.now() // gera id simples
-  })
+function editarFuncionario(f: Funcionario){
+  funcionario.value = { ...f } // cópia
+  editando.value = true
+}
 
-  // limpa o formulário
-  funcionario.value = {} as Funcionario
+function salvarFuncionario(){
+  if (editando.value){
+    const index = funcionarios.value.findIndex(f => f.id === funcionario.value.id)
+
+    if (index !== -1){
+      funcionarios.value[index] = { ...funcionario.value }
+    }
+
+    editando.value = false
+  } else {
+    funcionarios.value.push({
+      ...funcionario.value,
+      id: Date.now()
+    })
+  }
+
+  funcionario.value = {
+    id: 0,
+    nome: '',
+    email: '',
+    cargo: '',
+    salario: 0
+  }
 }
 
 function deletarFuncionario(id: number){
@@ -94,11 +150,11 @@ const funcionarios = ref([
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Cargo</th>
-        <th scope="col">Salario</th>
-        <th scope="col">Ações</th>
+        <th @click="ordenarPorNome" style="cursor: pointer;">Nome</th>
+        <th>Email</th>
+        <th @click="ordenarPorCargo" style="cursor: pointer;">Cargo</th>
+        <th @click="ordenarPorSalario" style="cursor: pointer;">Salario</th>
+        <th>Ações</th>
       </tr>
     </thead>
       <tbody>
@@ -107,7 +163,7 @@ const funcionarios = ref([
           <td>{{ funcionario.email }}</td>
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.salario }}</td>
-          <td><button class="btn btn-danger"></button><button class="btn btn-warning"></button></td>
+          <td><button class="btn btn-danger" @click="deletarFuncionario(funcionario.id)"></button><button class="btn btn-warning" @click="editarFuncionario(funcionario)"></button></td>
         </tr>
       </tbody>
     
