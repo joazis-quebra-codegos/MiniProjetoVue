@@ -3,6 +3,40 @@ import { RouterLink, RouterView } from 'vue-router'
 import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
 const cargo = ref('')
+const erro = ('')
+
+function validar(){
+  const erros: string[] = []
+
+  if (!funcionario.value.nome){
+    erros.push("Nome é obrigatório")
+  }
+
+  if (!funcionario.value.email){
+    erros.push("Email é obrigatório")
+  }
+
+  if (!funcionario.value.cargo){
+    erros.push("Cargo é obrigatória")
+  }
+
+  if (!funcionario.value.salario){
+    erros.push("Salario é obrigatório")
+  }
+
+  return erros
+}
+
+function enviar(){
+  const erros = validar()
+
+  if (erros.length > 0){
+    alert(erros.join('\n')) // quebra de linha
+  } else {
+    alert("Funcionário válido ✅")
+  }
+}
+
 const funcionario = ref({} as Funcionario)
 const funcionarios = ref([
   {
@@ -49,7 +83,6 @@ const funcionarios = ref([
           <td>{{ funcionario.salario }}</td>
         </tr>
       </tbody>
-
     </thead>
   </table>
 
