@@ -2,7 +2,6 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
-const cargo = ref('')
 const erro = ('')
 
 function validar(){
@@ -18,10 +17,6 @@ function validar(){
 
   if (!funcionario.value.cargo){
     erros.push("Cargo é obrigatória")
-  }
-
-  if (!funcionario.value.salario){
-    erros.push("Salario é obrigatório")
   }
 
   return erros
