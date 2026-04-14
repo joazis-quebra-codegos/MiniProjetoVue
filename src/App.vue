@@ -4,40 +4,23 @@ import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
 const erro = ('')
 const editando = ref(false)
-const ordem = ref<'asc' | 'desc'>('asc')
 
-function ordenarPorNome(){
+const ordem = ref(true)
+
+function ordenar(campo: 'nome' | 'cargo' | 'salario'){
   funcionarios.value.sort((a, b) => {
-    return ordem.value === 'asc'
-      ? a.nome.localeCompare(b.nome)
-      : b.nome.localeCompare(a.nome)
+    let resultado
+
+    if (typeof a[campo] === 'string'){
+      resultado = (a[campo] as string).localeCompare(b[campo] as string)
+    } else {
+      resultado = (a[campo] as number) - (b[campo] as number)
+    }
+
+    return ordem.value ? resultado : -resultado
   })
 
-  inverterOrdem()
-}
-
-function ordenarPorCargo(){
-  funcionarios.value.sort((a, b) => {
-    return ordem.value === 'asc'
-      ? a.cargo.localeCompare(b.cargo)
-      : b.cargo.localeCompare(a.cargo)
-  })
-
-  inverterOrdem()
-}
-
-function ordenarPorSalario(){
-  funcionarios.value.sort((a, b) => {
-    return ordem.value === 'asc'
-      ? a.salario - b.salario
-      : b.salario - a.salario
-  })
-
-  inverterOrdem()
-}
-
-function inverterOrdem(){
-  ordem.value = ordem.value === 'asc' ? 'desc' : 'asc'
+  ordem.value = !ordem.value
 }
 
 function validar(){
@@ -150,10 +133,10 @@ const funcionarios = ref([
   <table class="table">
     <thead>
       <tr>
-        <th @click="ordenarPorNome" style="cursor: pointer;">Nome</th>
+        <th @click="ordenar('nome')" style="cursor:pointer;">Nome</th>
         <th>Email</th>
-        <th @click="ordenarPorCargo" style="cursor: pointer;">Cargo</th>
-        <th @click="ordenarPorSalario" style="cursor: pointer;">Salario</th>
+        <th @click="ordenar('cargo')" style="cursor:pointer;">Cargo</th>
+        <th @click="ordenar('salario')" style="cursor:pointer;">Salario</th>
         <th>Ações</th>
       </tr>
     </thead>
