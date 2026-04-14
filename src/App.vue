@@ -2,8 +2,9 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
-const cargo = ref('')
 const erro = ('')
+
+
 
 function validar(){
   const erros: string[] = []
@@ -20,24 +21,39 @@ function validar(){
     erros.push("Cargo é obrigatória")
   }
 
-  if (!funcionario.value.salario){
-    erros.push("Salario é obrigatório")
+    if (!funcionario.value.salario){
+    erros.push("Cargo é obrigatória")
   }
 
   return erros
 }
-
 function enviar(){
   const erros = validar()
 
   if (erros.length > 0){
-    alert(erros.join('\n')) // quebra de linha
+    alert(erros.join('\n'))
   } else {
     alert("Funcionário válido ✅")
+    salvarFuncionario()
   }
 }
 
-const funcionario = ref({} as Funcionario)
+function salvarFuncionario(){
+  funcionarios.value.push({
+    ...funcionario.value,
+    id: Date.now() // gera id simples
+  })
+
+  // limpa o formulário
+  funcionario.value = {} as Funcionario
+}
+const funcionario = ref<Funcionario>({
+  id: 0,
+  nome: '',
+  email: '',
+  cargo: '',
+  salario: 0
+})
 const funcionarios = ref([
   {
     id: 1,
@@ -65,8 +81,8 @@ const funcionarios = ref([
     <input class="form-control" type="number" placeholder="Salário" aria-label="salario" v-model="funcionario.salario">
   </div>
 
-  <button @click="enviar" type="submit">Enviar </button>
 
+  <button @click="enviar" type="submit">Enviar </button>
 
   <table class="table">
     <thead>
