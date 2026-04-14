@@ -53,8 +53,8 @@ const funcionarios = ref([
 <template>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-
-  <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
+  
+  <div class="cadastro" style="display: flex; justify-self: center;width:70%; flex-direction: column; margin-top: 20px;">
     <label class="form-label">Nome</label>
     <input class="form-control" type="text" placeholder="Nome" aria-label="Nome" v-model="funcionario.nome">
     <label class="form-label">Email</label>
@@ -62,7 +62,7 @@ const funcionarios = ref([
     <label for="form-label">Cargo</label>
     <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="funcionario.cargo">
     <label  class="form-label">Salario</label>
-    <input class="form-control" type="email" placeholder="Salário" aria-label="salario" v-model="funcionario.salario">
+    <input class="form-control" type="number" placeholder="Salário" aria-label="salario" v-model="funcionario.salario">
   </div>
 
   <button @click="enviar" type="submit">Enviar </button>
@@ -84,7 +84,7 @@ const funcionarios = ref([
           <td>{{ funcionario.email }}</td>
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.salario }}</td>
-          <td><button class="btn btn-danger"></button><button class="btn btn-warning"></button></td>
+          <td><button class="btn btn-danger" @click="removerUsuario(id)"></button><button class="btn btn-warning"></button></td>
         </tr>
       </tbody>
     
