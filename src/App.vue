@@ -4,6 +4,8 @@ import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
 const erro = ('')
 
+
+
 function validar(){
   const erros: string[] = []
 
@@ -19,20 +21,39 @@ function validar(){
     erros.push("Cargo é obrigatória")
   }
 
+    if (!funcionario.value.salario){
+    erros.push("Cargo é obrigatória")
+  }
+
   return erros
 }
-
 function enviar(){
   const erros = validar()
 
   if (erros.length > 0){
-    alert(erros.join('\n')) // quebra de linha
+    alert(erros.join('\n'))
   } else {
     alert("Funcionário válido ✅")
+    salvarFuncionario()
   }
 }
 
-const funcionario = ref({} as Funcionario)
+function salvarFuncionario(){
+  funcionarios.value.push({
+    ...funcionario.value,
+    id: Date.now() // gera id simples
+  })
+
+  // limpa o formulário
+  funcionario.value = {} as Funcionario
+}
+const funcionario = ref<Funcionario>({
+  id: 0,
+  nome: '',
+  email: '',
+  cargo: '',
+  salario: 0
+})
 const funcionarios = ref([
   {
     id: 1,
@@ -48,8 +69,7 @@ const funcionarios = ref([
 <template>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-
-  <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
+    <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
     <label class="form-label">Nome</label>
     <input class="form-control" type="text" placeholder="Nome" aria-label="Nome" v-model="funcionario.nome">
     <label class="form-label">Email</label>
@@ -57,11 +77,11 @@ const funcionarios = ref([
     <label for="form-label">Cargo</label>
     <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="funcionario.cargo">
     <label  class="form-label">Salario</label>
-    <input class="form-control" type="email" placeholder="Salário" aria-label="salario" v-model="funcionario.salario">
+    <input class="form-control" type="number" placeholder="Salário" aria-label="salario" v-model="funcionario.salario">
   </div>
 
-  <button @click="enviar" type="submit">Enviar </button>
 
+  <button @click="enviar" type="submit">Enviar </button>
 
   <table class="table">
     <thead>
