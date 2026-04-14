@@ -56,13 +56,13 @@ const funcionarios = ref([
 
   <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
     <label class="form-label">Nome</label>
-    <input class="form-control" type="text" placeholder="Nome" aria-label="Nome">
+    <input class="form-control" type="text" placeholder="Nome" aria-label="Nome" v-model="funcionario.nome">
     <label class="form-label">Email</label>
-    <input class="form-control" type="email" placeholder="Email" aria-label="Email">
+    <input class="form-control" type="email" placeholder="Email" aria-label="Email" v-model="funcionario.email">
     <label for="form-label">Cargo</label>
-    <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="cargo">
+    <input class="form-control" type="text" placeholder="Insira o cargo aqui" v-model="funcionario.cargo">
     <label  class="form-label">Salario</label>
-    <input class="form-control" type="email" placeholder="Salário" aria-label="salario">
+    <input class="form-control" type="email" placeholder="Salário" aria-label="salario" v-model="funcionario.salario">
   </div>
 
   <button @click="enviar" type="submit">Enviar </button>
