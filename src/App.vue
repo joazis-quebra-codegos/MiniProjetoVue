@@ -65,6 +65,8 @@ const funcionarios = ref([
     <input class="form-control" type="email" placeholder="Salário" aria-label="salario">
   </div>
 
+  <button @click="enviar" type="submit">Enviar </button>
+
 
   <table class="table">
     <thead>
@@ -74,7 +76,8 @@ const funcionarios = ref([
         <th scope="col">Cargo</th>
         <th scope="col">Salario</th>
         <th scope="col">Ações</th>
-      </tr>
+      </tr> 
+    </thead>
       <tbody>
         <tr v-for="funcionario in funcionarios" :key="funcionario.id">
           <td>{{ funcionario.nome }}</td>
@@ -83,11 +86,8 @@ const funcionarios = ref([
           <td>{{ funcionario.salario }}</td>
         </tr>
       </tbody>
-    </thead>
+   
   </table>
-
-
-
 </template>
 
 <style scoped>
