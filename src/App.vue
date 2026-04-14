@@ -76,7 +76,8 @@ const funcionarios = ref([
 <template>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <div class="cadastro" style="display: flex; justify-self: center;width:50%; flex-direction: column; margin-top: 20px;">
+  
+  <div class="cadastro" style="display: flex; justify-self: center;width:70%; flex-direction: column; margin-top: 20px;">
     <label class="form-label">Nome</label>
     <input class="form-control" type="text" placeholder="Nome" aria-label="Nome" v-model="funcionario.nome">
     <label class="form-label">Email</label>
@@ -106,7 +107,7 @@ const funcionarios = ref([
           <td>{{ funcionario.email }}</td>
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.salario }}</td>
-          <td><button class="btn btn-danger" @click="deletarFuncionario(funcionario.id)"></button><button class="btn btn-warning"></button></td>
+          <td><button class="btn btn-danger"></button><button class="btn btn-warning"></button></td>
         </tr>
       </tbody>
     
