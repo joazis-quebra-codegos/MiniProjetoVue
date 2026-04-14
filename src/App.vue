@@ -4,8 +4,6 @@ import { computed, ref, VueElement } from 'vue'
 import type Funcionario from './model/Funcionario';
 const erro = ('')
 
-
-
 function validar(){
   const erros: string[] = []
 
@@ -47,6 +45,15 @@ function salvarFuncionario(){
   // limpa o formulário
   funcionario.value = {} as Funcionario
 }
+
+function deletarFuncionario(id: number){
+  const index = funcionarios.value.findIndex(f => f.id === id)
+
+  if (index !== -1){
+    funcionarios.value.splice(index, 1)
+  }
+}
+
 const funcionario = ref<Funcionario>({
   id: 0,
   nome: '',
@@ -99,7 +106,7 @@ const funcionarios = ref([
           <td>{{ funcionario.email }}</td>
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.salario }}</td>
-          <td><button class="btn btn-danger"></button><button class="btn btn-warning"></button></td>
+          <td><button class="btn btn-danger" @click="deletarFuncionario(funcionario.id)"></button><button class="btn btn-warning"></button></td>
         </tr>
       </tbody>
     
